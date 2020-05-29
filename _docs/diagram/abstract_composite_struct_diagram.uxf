@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>110</x>
+      <y>320</y>
+      <w>360</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>*Document*
+-.
+Project: POJO HTTP Data Servlet 3.0 Wrapper
+Title: Abstract Composite Structure Diagram
+Doc version: 0.1(May 20, 2020)
+/(Please refer to abstract_composite_struct_diagram_release_note.md file for version history)/
+Repo:
+https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper
+Author(s):
+911992
+
+-
+*Meta Legends*
+-.
+valign=top
+halign=left
+layer=-100
+bg=light_gray
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>110</x>
+      <y>620</y>
+      <w>360</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>*Authors*
+-
+911992[principal]
+https://github.com/911992
+-.
+
+valign=top
+halign=left
+layer=-100
+bg=light_gray
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>480</x>
+      <y>320</y>
+      <w>210</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+WAsys
+Generic Object Pool
+bg=#eeffff
+layer=-190</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>950</x>
+      <y>320</y>
+      <w>240</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+WAsys
+POJO HTTP Data
+-..
+Servlet 3.0 Wrapper
+bg=#ffff99
+layer=-190
+halign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>480</x>
+      <y>430</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+WAsys
+POJO HTTP Data
+bg=#ffeeff
+layer=-190</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>950</x>
+      <y>620</y>
+      <w>240</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+HTTP Server
+Component
+-..
+Servlet 3.0 Impl
+bg=#9999ff
+halign=center</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>730</x>
+      <y>620</y>
+      <w>180</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+User
+Component
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>320</y>
+      <w>160</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=)-</panel_attributes>
+    <additional_attributes>20.0;20.0;140.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>330</y>
+      <w>150</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+bg=#99ffff</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>760</x>
+      <y>410</y>
+      <w>120</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Object_Factory
+style=wordwrap
+fontsize=12</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>770</x>
+      <y>350</y>
+      <w>100</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Object_Pool
+style=wordwrap
+fontsize=12</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>390</y>
+      <w>160</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+bg=#ffff99</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>380</y>
+      <w>150</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=)-</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>470</y>
+      <w>170</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=)-</panel_attributes>
+    <additional_attributes>140.0;30.0;140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>750</x>
+      <y>540</y>
+      <w>160</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Request_Data_Handler
+style=wordwrap
+fontsize=12</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>510</y>
+      <w>160</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+bg=#ffff99</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1020</x>
+      <y>570</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+bg=#9999ff</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1030</x>
+      <y>590</y>
+      <w>100</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Servlet 3.0
+style=wordwrap
+fontsize=12</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1030</x>
+      <y>540</y>
+      <w>130</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=)-</panel_attributes>
+    <additional_attributes>20.0;40.0;110.0;40.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>890</x>
+      <y>560</y>
+      <w>150</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=)-</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>800</x>
+      <y>520</y>
+      <w>50</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=)-</panel_attributes>
+    <additional_attributes>20.0;20.0;20.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>630</y>
+      <w>90</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+bg=green</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>610</x>
+      <y>650</y>
+      <w>130</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>Fillable_Object
+style=wordwrap
+fontsize=12</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>510</y>
+      <w>170</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+</diagram>
