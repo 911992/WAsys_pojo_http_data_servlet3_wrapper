@@ -5,7 +5,7 @@ Servlet 3.0 wrapper for [WAsys_pojo_http_data](https://github.com/911992/WAsys_p
 *Diagram 0: Repo Social Media Img*  
 
 ## Revision History
-Latest: v0.1 (May 20, 2020)  
+Latest: v0.1.1 (May 31, 2020)  
 Please refer to [release_note.md](./release_note.md) file  
 
 ## Requirements

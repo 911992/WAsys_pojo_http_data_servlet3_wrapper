@@ -10,6 +10,9 @@ Created on: May 21, 2020 6:36:10 AM
     @author https://github.com/911992
  
 History:
+    0.1.1 (20200531)
+        • (deadly stupid bug), fixed the check at get_param_at() method, about checking if a param is in bound of out-of-form-data params
+
     initial version: 0.1(20200520)
  */
 package wasys.lib.pojo_http_data.servlet3_wrapper;
@@ -480,7 +483,7 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
     public String get_param_at(String arg_param_name, int arg_idx) {
         String[] _vals = req.getParameterValues(arg_param_name);
         if (_vals != null) {
-            if (_vals.length < arg_idx) {
+            if (_vals.length > arg_idx) {
                 return _vals[arg_idx];
             } else {
                 arg_idx = arg_idx - _vals.length;
