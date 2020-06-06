@@ -176,9 +176,9 @@ Internal pool initializing for type `Servlet_Request_Data_Handler` is done by ca
 
 During the initialization, `Servlet_Request_Data_Handler` asks the *JNDI* to grab some env parameters are requried for initializing the internal pool, these values as explained as following list
 
-0. A `String` value with key `POJO_HTTP_DATA_POOL_INIT_LEN`, that holds the pool initial value.
-1. A `String` value with key `POJO_HTTP_DATA_POOL_MAX_LEN`, that holds the pool maximum allowed holding instances.
-2. A `String` value with key `POJO_HTTP_DATA_POOL_FULL_POL`, that points out to a const of `Full_Pool_Object_Creation_Policy` enum (case-sensitive).
+0. A `String` value with key `Servlet_Request_Data_Handler_POOL_INIT_LEN`, that holds the pool initial value.
+1. A `String` value with key `Servlet_Request_Data_Handler_POOL_MAX_LEN`, that holds the pool maximum allowed holding instances.
+2. A `String` value with key `Servlet_Request_Data_Handler_POOL_FULL_POL`, that points out to a const of `Full_Pool_Object_Creation_Policy` enum (case-sensitive).
 
 **Note:** any *invalid* or *missed* value will causing using defined values/state from `Generic_Object_Pool_Policy.DEF_INS`.  
 
