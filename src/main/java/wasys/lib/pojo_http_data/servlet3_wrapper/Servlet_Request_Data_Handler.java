@@ -6,10 +6,18 @@
  /*
 WAsys_pojo_http_data_servlet3_wrapper
 File: Servlet_Request_Data_Handler.java
-Created on: May 21, 2020 6:36:10 AM
+Created on: May 21, 2020 6:36:11 AM
     @author https://github.com/911992
  
 History:
+    0.2.0 (20200606)
+        • Updated/Reworked documentation
+        • Changed the way Scanner class is initialized in instream_to_str() method, now using different constructor
+        • Changed CTX_POOL_POOL_INIT_LEN_KEY, CTX_POOL_POOL_MAX_LEN_KEY, and CTX_POOL_POOL_FULL_POL_KEY fields names and their values
+            • CTX_POOL_POOL_INIT_LEN_KEY -> Servlet_Request_Data_Handler_POOL_INIT_LEN_KEY
+            • CTX_POOL_POOL_MAX_LEN_KEY -> Servlet_Request_Data_Handler_POOL_MAX_LEN_KEY
+            • CTX_POOL_POOL_FULL_POL_KEY -> Servlet_Request_Data_Handler_POOL_FULL_POL_KEY
+
     0.1.1 (20200531)
         • (deadly stupid bug), fixed the check at get_param_at() method, about checking if a param is in bound of out-of-form-data params
 
@@ -19,6 +27,7 @@ package wasys.lib.pojo_http_data.servlet3_wrapper;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Scanner;
@@ -31,20 +40,30 @@ import wasys.lib.generic_object_pool.Object_Pool;
 import wasys.lib.generic_object_pool.Pool_Context;
 import wasys.lib.generic_object_pool.api.Object_Factory;
 import wasys.lib.generic_object_pool.api.Poolable_Object;
+import wasys.lib.pojo_http_data.Generic_Object_Filler;
 import wasys.lib.pojo_http_data.api.Fillable_Object;
+import wasys.lib.pojo_http_data.api.container.Request_Data_Handler;
 import wasys.lib.pojo_http_data.api_wrapper.Poolable_Request_Data_Handler_Adapter;
 import wasys.lib.pojo_http_data.exception.Unfillable_Object_Ex;
 
 /**
- * A poolable({@link Poolable_Object}) Wrapper/Proxy class for Servlet 3.0
- * {@link HttpServletRequest} that implements Request_Data_handler by extending
- * its wrapper {@link Poolable_Request_Data_Handler_Adapter}. For instancing
- * this object, either internal pool could be used for a poolable
- * object(recommended), or as a standalone (out of pool context) as its public
- * constructor, considering following samples
- * <br/>
- * <b>• Using pooled instance</b>
- * <code>
+ * A poolable({@link Poolable_Object}) Wrapper/Proxy class for Servlet 3.0 {@link HttpServletRequest}.
+ * <p>It implements {@link Request_Data_Handler} by extending
+ * its wrapper {@link Poolable_Request_Data_Handler_Adapter}.
+ * </p>
+ * <p>
+ * For instancing(getting an object) this type, considering following approaches are listed below
+ * </p>
+ * <ul>
+ * <li>Using internal pool({@link Object_Pool}) for a poolable({@link Poolable_Object}) object(recommended)</li>
+ * <li>Explicit object instancing using {@code new}</li>
+ * </ul>
+ * <p>
+ * considering following samples
+ * </p>
+ * <p>
+ * <b>Using pooled instance</b>
+ * </p>
  * <pre>
  * try(Servlet_Request_Data_Handler _srdh = Servlet_Request_Data_Handler.new_pooled_instance(_servlet_req_ins)){
  *  // using _srdh
@@ -54,80 +73,150 @@ import wasys.lib.pojo_http_data.exception.Unfillable_Object_Ex;
  * // using _srdh
  * _srdh.close();//important! must be done
  * </pre>
- * </code>
- * <br/>
- * <b>• As a standalone instance</b>
- * <code>
+ * 
+ * <p>
+ * <b>As a standalone instance</b>
+ * </p>
  * <pre>
  * Servlet_Request_Data_Handler _srdh = new Servlet_Request_Data_Handler(_serv_req);
  * // using _srdh
- * </code>
  * </pre>
- * <br/>
- *
- * <b>• </b>
- *
+ * <hr>
+ * <p><b>Internal Pool</b></p>
+ * <p>
+ * Internal pool <b>must</b> be initialized, before any pooled version is required.
+ * </p>
+ * <p>
+ * This is recommended to start/shutdown the internal pool, as servlet context is initialized and destroyed using a simple servlet listener. Class {@link Servlet_Request_Data_Handler_Servlet_Ctx_Listener} does the exact thing, but <b>must</b> be mapped/added to target `web.xml` in order to get called.
+ * </p>
+ * <p>
+ * This is also possible to customize the default internal pool initialization config using JNDI, by specifying related keys/values.
+ * </p>
+ * <p>
+ * Considering following sample `web.xml` env resource mapping about internal pool initialization conf data.
+ * </p>
+ * <pre>
+ * &lt;web-app ...&gt;
+ * ...
+ * &lt;env-entry&gt;
+ *     &lt;env-entry-name&gt;Servlet_Request_Data_Handler_POOL_INIT_LEN&lt;/env-entry-name&gt;
+ *     &lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;
+ *     &lt;!-- -1 to specify using the default pool value, probably 0 --&gt;
+ *     &lt;env-entry-value&gt;-1&lt;/env-entry-value&gt;
+ * &lt;/env-entry&gt;
+ * &lt;env-entry&gt;
+ *     &lt;env-entry-name&gt;Servlet_Request_Data_Handler_POOL_MAX_LEN&lt;/env-entry-name&gt;
+ *     &lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;
+ *     &lt;env-entry-value&gt;32&lt;/env-entry-value&gt;
+ * &lt;/env-entry&gt;
+ * &lt;env-entry&gt;
+ *     &lt;env-entry-name&gt;Servlet_Request_Data_Handler_POOL_FULL_POL&lt;/env-entry-name&gt;
+ *     &lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;
+ *     &lt;!-- values should be one of wasys.lib.generic_object_pool.Full_Pool_Object_Creation_Policy enum consts --&gt;
+ *     &lt;env-entry-value&gt;Create_New_No_Pooling&lt;/env-entry-value&gt;
+ * &lt;/env-entry&gt;
+ * ...
+ * &lt;/web-app&gt;
+ * </pre>
  * @author https://github.com/911992
  */
 public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_Adapter<HttpServletRequest> {
 
     /**
      * The JNDI key(integer value in String form/type), for specifying the
-     * internal pool initialize value. The value must be a valid integer value,
-     * but as String type.<br/>
-     * web descriptor example {@code web.xml}:
+     * internal pool initialize value.
+     * <p>
+     * The value must be a valid decode-able integer value(e.g. 0x20), but as {@link String} type.
+     * </p>
+     * <p>
+     * Considering following web descriptor example {@code web.xml}:
+     * </p>
      * <pre>
      * &lt;env-entry&gt;
-     * &lt;env-entry-name&gt;POJO_HTTP_DATA_POOL_INIT_LEN&lt;/env-entry-name&gt;
+     * &lt;env-entry-name&gt;Servlet_Request_Data_Handler_POOL_INIT_LEN&lt;/env-entry-name&gt;
      * &lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;
      * &lt;env-entry-value&gt;8&lt;/env-entry-value&gt;
      * &lt;/env-entry&gt;
      * </pre>
+     * <p>
+     * <b>Note:</b> please mind the <b>value</b>({@code Servlet_Request_Data_Handler_POOL_INIT_LEN}) of this field should be used as JNDI/resource key, <u><b>not</b> the field's <b>name</b></u>
+     * </p>
      */
-    public static final String CTX_POOL_POOL_INIT_LEN_KEY = "POJO_HTTP_DATA_POOL_INIT_LEN";
+    public static final String Servlet_Request_Data_Handler_POOL_INIT_LEN_KEY = "Servlet_Request_Data_Handler_POOL_INIT_LEN";
 
     /**
      * The JNDI key(integer value in String form/type), for specifying the
-     * internal pool maximum object count value. The value must be a valid
-     * integer value, but as String type.<br/>
-     * web descriptor example {@code web.xml}:
+     * internal pool maximum object count value.
+     * <p>
+     * The value must be a valid decode-able integer value(e.g. 0x20), but as {@link String} type.
+     * </p>
+     * <p>
+     * Considering following web descriptor example {@code web.xml}:
+     * </p>
      * <pre>
      * &lt;env-entry&gt;
-     * &lt;env-entry-name&gt;POJO_HTTP_DATA_POOL_MAX_LEN&lt;/env-entry-name&gt;
+     * &lt;env-entry-name&gt;Servlet_Request_Data_Handler_POOL_MAX_LEN&lt;/env-entry-name&gt;
      * &lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;
      * &lt;env-entry-value&gt;128&lt;/env-entry-value&gt;
      * &lt;/env-entry&gt;
      * </pre>
-     * <b>NOTE:</b>
+     * <p>
+     * <b>NOTE:</b> pool max len should not be less than the init/minimum({@code Servlet_Request_Data_Handler_POOL_INIT_LEN_KEY}) value.
+     * </p>
+     * <p>
+     * <b>Note:</b> please mind the <b>value</b>({@code Servlet_Request_Data_Handler_POOL_MAX_LEN}) of this field should be used as JNDI/resource key, <u><b>not</b> the field's <b>name</b></u>
+     * </p>
      */
-    public static final String CTX_POOL_POOL_MAX_LEN_KEY = "POJO_HTTP_DATA_POOL_MAX_LEN";
+    public static final String Servlet_Request_Data_Handler_POOL_MAX_LEN_KEY = "Servlet_Request_Data_Handler_POOL_MAX_LEN";
 
     /**
      * The JNDI key(String type), for specifying the internal pool full policy.
+     * <p>
      * Value should be one of the {@link Full_Pool_Object_Creation_Policy}
-     * enum's const (case-sensitive)<br/>
-     * web descriptor example {@code web.xml}:
+     * enum's const (case-sensitive)
+     * </p>
+     * <p>
+     * Considering following web descriptor example {@code web.xml}:
+     * </p>
      * <pre>
      * &lt;env-entry&gt;
-     * &lt;env-entry-name&gt;POJO_HTTP_DATA_POOL_FULL_POL&lt;/env-entry-name&gt;
+     * &lt;env-entry-name&gt;Servlet_Request_Data_Handler_POOL_FULL_POL&lt;/env-entry-name&gt;
      * &lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;
      * &lt;env-entry-value&gt;Create_New_No_Pooling&lt;/env-entry-value&gt;
      * &lt;/env-entry&gt;
      * </pre>
-     * <b>NOTE:</b>
+     * <p>
+     * <b>Important note:</b> invalid/wrong value may result serious system instability. Please make sure you set a correct full pool policy.
+     * </p>
+     * <p>
+     * <b>Note:</b> please mind the <b>value</b>({@code Servlet_Request_Data_Handler_POOL_FULL_POL}) of this field should be used as JNDI/resource key, <u><b>not</b> the field's <b>name</b></u>
+     * </p>
      */
-    public static final String CTX_POOL_POOL_FULL_POL_KEY = "POJO_HTTP_DATA_POOL_FULL_POL";
+    public static final String Servlet_Request_Data_Handler_POOL_FULL_POL_KEY = "Servlet_Request_Data_Handler_POOL_FULL_POL";
 
     /**
-     * Internal default object factory
+     * Internal default object factory.
+     * <p>
+     * Simply creates instances of {@link Servlet_Request_Data_Handler} when asked.
+     * </p>
+     * <p>
+     * Any created object comes with {@code null}-ptr associated to related {@link HttpServletRequest}
+     * </p>
      */
     private static final class _Factory implements Object_Factory {
 
+        /**
+         * Creates an instance of {@link Servlet_Request_Data_Handler}, with {@code null}-ptr association to {@link HttpServletRequest}.
+         * @return a new non-{@code null} (but not-ready) {@link Servlet_Request_Data_Handler} instance
+         */
         @Override
         public Poolable_Object create_object() {
             return new Servlet_Request_Data_Handler();
         }
 
+        /**
+         * Default constructor.
+         */
         _Factory() {
         }
 
@@ -140,13 +229,16 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
     private static Object_Pool def_pool = null;
 
     /**
-     * The default charset(utf-8) for decoding the multipart form data when
-     * @{code _charset_} parameter is not available.
+     * The default charset({@code utf-8}) for decoding the multipart.
+     * <p>
+     * Default charset when the expected
+     * {@code _charset_} parameter is not available(not sent by form).
+     * </p>
      */
     public static final Charset DEFAULT_CHARSET;
 
     /**
-     * The ascii charset for decoding the multipart @{code _charset_} parameter.
+     * The ASCII charset for decoding the multipart {@code _charset_} parameter.
      */
     public static final Charset ASCII_CHARSET;
 
@@ -178,29 +270,35 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
 
     /**
      * Pointer to working servlet http req.
+     * <p>
+     * If this object was grabbed as a pooled one from the internal pool, then this field is supposed to be {@code null} meanwhile it's in pool context.
+     * </p>
+     * <p>
+     * During usage of {@code this} object, this ptr <b>MUST</b> point to a non-{@code null} valid {@link HttpServletRequest}
+     * </p>
      */
     private HttpServletRequest req;
 
     /**
-     * Pointer to cached _charset_ parameter value (multipart).
+     * Pointer to cached {@code _charset_} parameter value (multipart).
      */
     private Charset cached_charset = null;
 
     /**
-     * Var that indicates if _charset_ parameter has been proceed.
+     * Var that indicates if {@code _charset_} parameter has been proceed.
      */
     private boolean cached_charset_done = false;
 
     /**
-     * Initializes the internal pool(if required). It asks the JNDI for any
+     * Initializes the internal pool(if required).
+     * <p>
+     * It asks the JNDI for any
      * config(vals) have been specified for initializing the pool, or uses the
-     * default instance in case of missed/invalid values. <br/>
+     * default instance in case of missed/invalid values. </p>
+     * <p>
      * Before calling this method, requesting for a pooled instance will cause a
      * {@code NullPointerException}
-     *
-     * @see CTX_POOL_POOL_INIT_LEN_KEY
-     * @see CTX_POOL_POOL_INIT_LEN_KEY
-     * @see CTX_POOL_POOL_FULL_POL_KEY
+     * </p>
      */
     synchronized public static void init_default_pool() {
         if (def_pool != null) {
@@ -212,9 +310,9 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
             int _max_size = _pol.getMax_object_count();
             Full_Pool_Object_Creation_Policy _full_pol = _pol.getFull_pool_instancing_policy();
             InitialContext _ic = new InitialContext();
-            String _init_size_str = (String) _ic.lookup(String.format("java:comp/env/%s", CTX_POOL_POOL_INIT_LEN_KEY));
-            String _max_size_str = (String) _ic.lookup(String.format("java:comp/env/%s", CTX_POOL_POOL_MAX_LEN_KEY));
-            String _full_pol_str = (String) _ic.lookup(String.format("java:comp/env/%s", CTX_POOL_POOL_FULL_POL_KEY));
+            String _init_size_str = (String) _ic.lookup(String.format("java:comp/env/%s", Servlet_Request_Data_Handler_POOL_INIT_LEN_KEY));
+            String _max_size_str = (String) _ic.lookup(String.format("java:comp/env/%s", Servlet_Request_Data_Handler_POOL_MAX_LEN_KEY));
+            String _full_pol_str = (String) _ic.lookup(String.format("java:comp/env/%s", Servlet_Request_Data_Handler_POOL_FULL_POL_KEY));
             if (_init_size_str != null) {
                 _init_size = Integer.decode(_init_size_str);
                 if (_init_size < 0) {
@@ -239,9 +337,9 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
     }
 
     /**
-     * Shutdowns the internal pool, and mark it as {@code null}. After calling
-     * this method, requesting for a pooled instance will cause a
-     * {@code NullPointerException}
+     * Shutdowns the internal pool, and mark it as {@code null}.
+     * <p>After calling this method, requesting for a pooled instance will cause a
+     * {@code NullPointerException}</p>
      */
     synchronized public static void shutdown_default_pool() {
         if (def_pool == null) {
@@ -252,14 +350,16 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
     }
 
     /**
-     * Asks the internal pool for a pooled instance. The returning instance
-     * <b>MUST</b> be release({@code close()}) once it's no more required.<br/>
+     * Asks the internal pool for a pooled instance. 
+     * <p>The returning instance
+     * <b>MUST</b> be released({@code close()}) once it's no more required.
+     * </p>
+     * <p>
      * Best practice is using a {@code try-with-resources} block to make sure
      * the pooled instance will be closed automatically
-     *
+     * </p>
      * @param arg_req pointer to concreted/non-{@code null} servlet http req
-     * @return a poolable({@link Poolable_Object}) instance of
-     * {@code Servlet_Request_Data_Handler}
+     * @return a poolable({@link Poolable_Object}) instance of {@code Servlet_Request_Data_Handler}
      * @throws NullPointerException when the internal pool has not been
      * initialized yet
      */
@@ -274,8 +374,7 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
      *
      * @param <A> type of the concreted {@link Fillable_Object}
      * @param arg_req concreted and non-{@code null} http servlet request obj
-     * @param arg_pojo concreted and non-{@code null} {@link Fillable_Object}
-     * needs to be filled
+     * @param arg_pojo concreted and non-{@code null} {@link Fillable_Object} needs to be filled
      * @return the same {@code arg_pojo} regardless of success or failed fill op
      * @throws Unfillable_Object_Ex if the given {@code arg_pojo} is not a valid
      * fillable object
@@ -289,7 +388,7 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
 
     /**
      * Asks the internal pool for a pooled instance, and then calls the default
-     * pojo filler({@link Generic_Object_Filler}) to fill the given objects.
+     * POJO filler({@link Generic_Object_Filler}) to fill the given objects.
      *
      * @param arg_req concreted and non-{@code null} http servlet request obj
      * @param arg_pojos concreted and non-{@code null} {@link Fillable_Object}s
@@ -320,17 +419,18 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
     }
 
     /**
-     * Called by the default/internal object factory
+     * Called by the default/internal object factory.
+     * <p>
+     * A new instance of this type with {@code null} ptr for the related {@code req}({@link HttpServletRequest})
+     * </p>
      */
     private Servlet_Request_Data_Handler() {
     }
 
     /**
      * Called by {@code new_pooled_instance} when a not-ready instance is
-     * created, and need to be initialized by associating a non-{
-     *
-     * @null} http servlet req instance.
-     * @param arg_req
+     * created, and need to be initialized by associating a non-{@code null} http servlet req instance.
+     * @param arg_req the valid and non-{@code null} http req instance nee to be used for filling
      */
     private void set_req(HttpServletRequest arg_req) {
         this.req = arg_req;
@@ -416,7 +516,7 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
      *
      * @param arg_param_name the part/parameter name
      * @param arg_idx index of the parameter
-     * @return
+     * @return the part that is sit at given index with given name, or {@code null} if part is not available
      */
     private Part get_multipart_form_data(String arg_param_name, int arg_idx) {
         Part _pt = get_part_at(arg_param_name, arg_idx);
@@ -433,7 +533,9 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
     /**
      * Converts a input stream that is associated to a formdata part, into a
      * string.
-     *
+     * <p>
+     * Since version 0.2, the constructor is used for {@link Scanner} class is changed to {@link InputStreamReader}, since the previously used constructor is available since JDK 10 and later.
+     * </p>
      * @param arg_is the stream need to be read
      * @param arg_cs the charset need to be considered while reading the in
      * stream
@@ -441,7 +543,7 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
      * {@code null} because of any IO exception
      */
     private String instream_to_str(InputStream arg_is, Charset arg_cs) {
-        try (Scanner _sc = new Scanner(arg_is, arg_cs).useDelimiter("\\A")) {
+        try (InputStreamReader _insr=new InputStreamReader(arg_is, arg_cs) ;Scanner _sc = new Scanner(_insr).useDelimiter("\\A")) {
             String _res = _sc.next();
             return _res;
         } catch (Exception e) {
@@ -452,9 +554,11 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
 
     /**
      * Tries to find, read and decode the @{code _charset_} parameter from the
-     * request to set the {@code cached_charset} related to the form charset. If
-     * the {@code _charset_} could not be found, the {@code DEFAULT_CHARSET}
-     * will be used as cached charset
+     * request to set the {@code cached_charset} related to the form charset.
+     * <p>
+     * If the {@code _charset_} could not be found, the {@code DEFAULT_CHARSET}
+     * will be used as cached charset.
+     * </p>
      *
      * @return the already cached/proceed multipart form charset, or tries to
      * find and decode it
@@ -577,6 +681,9 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
         return req;
     }
 
+    /**
+     * Resets the current pooled-supposed instance by marking the working {@link HttpServletRequest}({@code req}) to {@code null}.
+     */
     @Override
     public void reset_state() {
         req = null;

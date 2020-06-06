@@ -5,7 +5,7 @@ Servlet 3.0 wrapper for [WAsys_pojo_http_data](https://github.com/911992/WAsys_p
 *Diagram 0: Repo Social Media Img*  
 
 ## Revision History
-Latest: v0.1.1 (May 31, 2020)  
+Latest: v0.2.0 (Jun 6, 2020)  
 Please refer to [release_note.md](./release_note.md) file  
 
 ## Requirements
@@ -26,6 +26,20 @@ Considering following abstracted composition diagram, that gives a fast vision o
 ![Abstract Composite Structure Diagram](./_docs/diagram/abstract_composite_struct_diagram_partial.svg)  
 *Diagram 1: [Abstract Composite Structure Diagram](./_docs/diagram/abstract_composite_struct_diagram.svg)*  
 
+## Maven Repository
+This lib now is available from central maven repository(thanks sonatype, and apache)  
+
+Add following dependency to your `pom.xml` maven conf file
+```xml
+<dependency>
+    <groupId>com.github.911992</groupId>
+    <artifactId>WAsys_pojo_http_data_servlet3_wrapper</artifactId>
+    <version>0.2.0</version>
+</dependency>
+```
+
+Not a maven project? Not a problem this lib could be build using ant too.  
+Besides that artifacts could be grabed from central maven repository.
 
 ## Composition Structure
 Considering the more detailed composite structure diagram.  
@@ -174,18 +188,18 @@ Here is one way to customizing/providing a non-default data for internal pool po
 <web-app ...>
 ...
 <env-entry>
-    <env-entry-name>POJO_HTTP_DATA_POOL_INIT_LEN</env-entry-name>
+    <env-entry-name>Servlet_Request_Data_Handler_POOL_INIT_LEN</env-entry-name>
     <env-entry-type>java.lang.String</env-entry-type>
     <!-- -1 to specify using the default pool value, probably 0 -->
     <env-entry-value>-1</env-entry-value>
 </env-entry>
 <env-entry>
-    <env-entry-name>POJO_HTTP_DATA_POOL_MAX_LEN</env-entry-name>
+    <env-entry-name>Servlet_Request_Data_Handler_POOL_MAX_LEN</env-entry-name>
     <env-entry-type>java.lang.String</env-entry-type>
     <env-entry-value>32</env-entry-value>
 </env-entry>
 <env-entry>
-    <env-entry-name>POJO_HTTP_DATA_POOL_FULL_POL</env-entry-name>
+    <env-entry-name>Servlet_Request_Data_Handler_POOL_FULL_POL</env-entry-name>
     <env-entry-type>java.lang.String</env-entry-type>
     <!-- values should be one of wasys.lib.generic_object_pool.Full_Pool_Object_Creation_Policy enum consts -->
     <env-entry-value>Create_New_No_Pooling</env-entry-value>
@@ -219,3 +233,4 @@ This is probably because of a streamable field in related POJO(`Fillable_Object`
 ## TODOs
 - [ ] Usage example (working on it, soon)  
 - [ ] Wrapper for *pre* Servlet 3.0 spec (*maybe*, just maybe, using Apache Commons for `multipart` processing)
+- [x] Maven Repository
