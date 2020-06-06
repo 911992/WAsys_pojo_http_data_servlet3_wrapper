@@ -208,15 +208,15 @@ Here is one way to customizing/providing a non-default data for internal pool po
 </web-app>    
 ```
 
-**HINT:** This is highly recommended to sync the value of `POJO_HTTP_DATA_POOL_MAX_LEN` with server's HTTP connection pool config, for maximum performance, and minimum incosnsitency.
+**HINT:** This is highly recommended to sync the value of `Servlet_Request_Data_Handler_POOL_MAX_LEN` with server's HTTP connection pool config, for maximum performance, and minimum incosnsitency.
 
 ## Throubleshooting
 **T0: Calling `Servlet_Request_Data_Handler.init_default_pool()` prints some exception on `STDOUT`**  
 Possibilities:  
 
-* Invalid integer values for `POJO_HTTP_DATA_POOL_INIT_LEN` or `POJO_HTTP_DATA_POOL_MAX_LEN` JNDI keys
-* Invalid value for `POJO_HTTP_DATA_POOL_FULL_POL` key, which is supposed to be one of the const of `Full_Pool_Object_Creation_Policy` enum type
-* Invalid values for `POJO_HTTP_DATA_POOL_INIT_LEN` or `POJO_HTTP_DATA_POOL_MAX_LEN` that violets creation of a `Generic_Object_Pool_Policy` (e.g. max is less than init size)
+* Invalid integer values for `Servlet_Request_Data_Handler_POOL_INIT_LEN` or `Servlet_Request_Data_Handler_POOL_MAX_LEN` JNDI keys
+* Invalid value for `Servlet_Request_Data_Handler_POOL_FULL_POL` key, which is supposed to be one of the const of `Full_Pool_Object_Creation_Policy` enum type
+* Invalid values for `Servlet_Request_Data_Handler_POOL_INIT_LEN` or `Servlet_Request_Data_Handler_POOL_MAX_LEN` that violets creation of a `Generic_Object_Pool_Policy` (e.g. max is less than init size)
 
 **T1: Calling static `Servlet_Request_Data_Handler.fill()` or ``Servlet_Request_Data_Handler.fill_all()`` method throws `NullPointerException`**  
 This is probably because non-initialized internal pool yet, make sure internal pool has been initialized(only once) using `init_default_pool()` method
