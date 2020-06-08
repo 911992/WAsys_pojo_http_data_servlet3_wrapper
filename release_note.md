@@ -4,6 +4,16 @@ repo: https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper
 Author: [911992](https://github.com/911992)  
 *(NOTE: following list carries mentionable(not all) changes. For detailed changes, check source code(s))*  
 
+**0.2.1** (Jun 8, 2020)
+
+0. Added the sample usage repo link (https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper_test)
+1. Repo
+    * Updated `README.md` file
+        * Added "Sample Usage" section, and link to the repo
+        * Marked the "Usage example" in "TODOs" section checked
+
+<hr/>
+
 **0.2.0** (Jun 6, 2020)
 
 0. Lib/artifact now is available from **Maven** central repository (⌐■_■)

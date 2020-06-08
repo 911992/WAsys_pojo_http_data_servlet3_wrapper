@@ -5,7 +5,7 @@ Servlet 3.0 wrapper for [WAsys_pojo_http_data](https://github.com/911992/WAsys_p
 *Diagram 0: Repo Social Media Img*  
 
 ## Revision History
-Latest: v0.2.0 (Jun 6, 2020)  
+Latest: v0.2.1 (Jun 8, 2020)  
 Please refer to [release_note.md](./release_note.md) file  
 
 ## Requirements
@@ -15,6 +15,9 @@ Please refer to [release_note.md](./release_note.md) file
 
 ## Who is Supposed To Use It?
 If you wish to perform some "HTTP Parameter to POJO" in *Servlet* level env, so this lib may help.
+
+### Sample Usage
+Please check [WAsys_pojo_http_data_servlet3_wrapper_test](https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper_test) repo that contains some sample usage about utilizing the lib.
 
 ## Overview
 This library is a *wrapper*, between a concreted **Servlet 3.0** Engine, and required **HTTP Server Component** module in WAsys_pojo_http_data lib.  
@@ -231,6 +234,6 @@ One reason could be becasue of the internal pool, that has initialized with `Ful
 This is probably because of a streamable field in related POJO(`Fillable_Object`). Make sure your `HttpServlet` has annotated with `MultipartConfig`
 
 ## TODOs
-- [ ] Usage example (working on it, soon)  
+- [x] Usage example (please check [WAsys_pojo_http_data_servlet3_wrapper_test](https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper_test) repo)  
 - [ ] Wrapper for *pre* Servlet 3.0 spec (*maybe*, just maybe, using Apache Commons for `multipart` processing)
 - [x] Maven Repository
