@@ -4,6 +4,21 @@ repo: https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper
 Author: [911992](https://github.com/911992)  
 *(NOTE: following list carries mentionable(not all) changes. For detailed changes, check source code(s))*  
 
+**0.2.5** (Aug 13, 2020)
+
+0. Updated the depedency of [WAsys_pojo_http_data](https://github.com/911992/WAsys_pojo_http_data) to `v0.2.5` (20200813)
+1. `Source_Code::Servlet_Request_Data_Handler`
+    * Some documentation fixes
+1. Repo
+    * Updated `pom.xml`
+        * Updated the dependency of `WAsys_pojo_http_data` to `0.2.5`
+        * Updated the artifact to `0.2.5`
+        * Removed completed tasks from TODOs section
+    * Updated `README.md` file
+        * Updated the maven repositiory to `0.2.5`
+
+<hr/>
+
 **0.2.2** (Jun 24, 2020)
 
 0. Updated the depedency of [WAsys_pojo_http_data](https://github.com/911992/WAsys_pojo_http_data) to `v0.2.1` (20200724)

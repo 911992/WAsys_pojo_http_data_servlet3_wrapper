@@ -10,6 +10,9 @@ Created on: May 21, 2020 6:36:11 AM
     @author https://github.com/911992
  
 History:
+    0.2.5 (20200813)
+        • Some documentation fixes
+
     0.2.0 (20200606)
         • Updated/Reworked documentation
         • Changed the way Scanner class is initialized in instream_to_str() method, now using different constructor
@@ -583,6 +586,9 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
         return cached_charset;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String get_param_at(String arg_param_name, int arg_idx) {
         String[] _vals = req.getParameterValues(arg_param_name);
@@ -617,16 +623,25 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
         return null;
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String[] get_param_vals(String arg_param_name) {
         return req.getParameterValues(arg_param_name);
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public int param_count() {
         return req.getParameterMap().size();
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public boolean is_multipart_request() {
         String _head = req.getHeader("Content-Type");
@@ -636,6 +651,9 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
         return _head.startsWith("multipart/form-data");
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String get_part_filename_at(String arg_param, int arg_idx) {
         Part _pt = get_part_at(arg_param, arg_idx);
@@ -649,6 +667,9 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
         return _fn.replace("\"", "");
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public String get_part_mime_part_at(String arg_param, int arg_idx) {
         Part _pt = get_part_at(arg_param, arg_idx);
@@ -658,6 +679,9 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
         return _pt.getContentType();
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public long get_part_size_at(String arg_param, int arg_idx) {
         Part _pt = get_part_at(arg_param, arg_idx);
@@ -667,6 +691,9 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
         return _pt.getSize();
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public InputStream get_part_stream_at(String arg_param, int arg_idx) throws IOException {
         Part _pt = get_part_at(arg_param, arg_idx);
@@ -676,6 +703,9 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
         return _pt.getInputStream();
     }
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
     public HttpServletRequest get_associated_request() {
         return req;

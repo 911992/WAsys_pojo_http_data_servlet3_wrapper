@@ -5,7 +5,7 @@ Servlet 3.0 wrapper for [WAsys_pojo_http_data](https://github.com/911992/WAsys_p
 *Diagram 0: Repo Social Media Img*  
 
 ## Revision History
-Latest: v0.2.2 (Jun 24, 2020)  
+Latest: v0.2.5 (Aug 13, 2020)  
 Please refer to [release_note.md](./release_note.md) file  
 
 ## Requirements
@@ -37,7 +37,7 @@ Add following dependency to your `pom.xml` maven conf file
 <dependency>
     <groupId>com.github.911992</groupId>
     <artifactId>WAsys_pojo_http_data_servlet3_wrapper</artifactId>
-    <version>0.2.2</version>
+    <version>0.2.5</version>
 </dependency>
 ```
 
@@ -234,6 +234,4 @@ One reason could be becasue of the internal pool, that has initialized with `Ful
 This is probably because of a streamable field in related POJO(`Fillable_Object`). Make sure your `HttpServlet` has annotated with `MultipartConfig`
 
 ## TODOs
-- [x] Usage example (please check [WAsys_pojo_http_data_servlet3_wrapper_test](https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper_test) repo)  
 - [ ] Wrapper for *pre* Servlet 3.0 spec (*maybe*, just maybe, using Apache Commons for `multipart` processing)
-- [x] Maven Repository
