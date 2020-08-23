@@ -5,13 +5,14 @@ Servlet 3.0 wrapper for [WAsys_pojo_http_data](https://github.com/911992/WAsys_p
 *Diagram 0: Repo Social Media Img*  
 
 ## Revision History
-Latest: v0.2.5 (Aug 13, 2020)  
+Latest: v0.2.9 (Aug 23, 2020)  
 Please refer to [release_note.md](./release_note.md) file  
 
 ## Requirements
 0. A HTTP server that supports **Servlet 3.0** (e.g. Apache Tomcat, Jetty, etc..)
 1. [WAsys_pojo_http_data](https://github.com/911992/WAsys_pojo_http_data) Library
-2. [WAsys_simple_generic_object_pool](https://github.com/911992/WAsys_simple_generic_object_pool) Library
+2. [WAsys_Java_type_util](https://github.com/911992/WAsys_Java_type_util) Library
+3. [WAsys_simple_generic_object_pool](https://github.com/911992/WAsys_simple_generic_object_pool) Library
 
 ## Who is Supposed To Use It?
 If you wish to perform some "HTTP Parameter to POJO" in *Servlet* level env, so this lib may help.
@@ -37,7 +38,7 @@ Add following dependency to your `pom.xml` maven conf file
 <dependency>
     <groupId>com.github.911992</groupId>
     <artifactId>WAsys_pojo_http_data_servlet3_wrapper</artifactId>
-    <version>0.2.5</version>
+    <version>0.2.9</version>
 </dependency>
 ```
 

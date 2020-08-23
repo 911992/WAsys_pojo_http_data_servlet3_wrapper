@@ -4,6 +4,28 @@ repo: https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper
 Author: [911992](https://github.com/911992)  
 *(NOTE: following list carries mentionable(not all) changes. For detailed changes, check source code(s))*  
 
+**0.2.9** (Aug 23, 2020)
+
+0. Changes related to `WAsys_simple_generic_object_pool` API change version `0.5.1`
+1. Repo now depends on [WAsys_Java_type_util](https://github.com/911992/WAsys_Java_type_util)
+2. `Source_Code::Servlet_Request_Data_Handler`
+    * API sync with `WAsys_simple_generic_object_pool` v0.5.1 changes
+    * Changed `wasys.lib.generic_object_pool.api.Object_Factory` to `wasys.lib.java_type_util.reflect.type_sig.Object_Factory`
+3. Diagrams
+    * Updated abstract composite struct diagram (check changes [here](./_docs/diagram/abstract_composite_struct_diagram_release_note.md))
+    * Updated class diagram (check changes [here](./_docs/diagram/class_diagram_release_note.md))
+    * Updated composite structure diagram (check changes [here](./_docs/diagram/composite_struct_diagram_release_note.md))
+4. Repo
+    * Updated `README.md`file
+        * Added `WAsys_Java_type_util` as requirements
+    * Updated `pom.xml` file
+        * Artifact to version `0.2.9`
+        * Updated the dependency of `WAsys_simple_generic_object_pool` to `0.5.1`
+        * Updated the dependency of `WAsys_pojo_http_data` to `0.2.9`
+        * Added `WAsys_Java_type_util` dependency with version `0.1.7`
+
+<hr/>
+
 **0.2.5** (Aug 13, 2020)
 
 0. Updated the depedency of [WAsys_pojo_http_data](https://github.com/911992/WAsys_pojo_http_data) to `v0.2.5` (20200813)

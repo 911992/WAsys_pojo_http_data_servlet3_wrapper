@@ -5,7 +5,7 @@
     <id>UMLObject</id>
     <coordinates>
       <x>110</x>
-      <y>320</y>
+      <y>290</y>
       <w>360</w>
       <h>290</h>
     </coordinates>
@@ -13,7 +13,7 @@
 -.
 Project: POJO HTTP Data Servlet 3.0 Wrapper
 Title: Abstract Composite Structure Diagram
-Doc version: 0.1(May 20, 2020)
+Doc version: 0.2.9(Aug 23, 2020)
 /(Please refer to abstract_composite_struct_diagram_release_note.md file for version history)/
 Repo:
 https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper
@@ -34,7 +34,7 @@ style=wordwrap</panel_attributes>
     <id>UMLObject</id>
     <coordinates>
       <x>110</x>
-      <y>620</y>
+      <y>590</y>
       <w>360</w>
       <h>100</h>
     </coordinates>
@@ -55,9 +55,9 @@ style=wordwrap</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>480</x>
-      <y>320</y>
+      <y>290</y>
       <w>210</w>
-      <h>90</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes>symbol=component
 WAsys
@@ -70,9 +70,9 @@ layer=-190</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>950</x>
-      <y>320</y>
+      <y>290</y>
       <w>240</w>
-      <h>230</h>
+      <h>260</h>
     </coordinates>
     <panel_attributes>symbol=component
 WAsys
@@ -88,9 +88,9 @@ halign=center</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>480</x>
-      <y>430</y>
+      <y>460</y>
       <w>210</w>
-      <h>80</h>
+      <h>50</h>
     </coordinates>
     <panel_attributes>symbol=component
 WAsys
@@ -134,7 +134,7 @@ bg=green</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>810</x>
-      <y>320</y>
+      <y>300</y>
       <w>160</w>
       <h>50</h>
     </coordinates>
@@ -145,7 +145,7 @@ bg=green</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>680</x>
-      <y>330</y>
+      <y>310</y>
       <w>150</w>
       <h>30</h>
     </coordinates>
@@ -156,8 +156,8 @@ bg=#99ffff</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>760</x>
-      <y>410</y>
+      <x>540</x>
+      <y>360</y>
       <w>120</w>
       <h>20</h>
     </coordinates>
@@ -170,7 +170,7 @@ fontsize=12</panel_attributes>
     <id>Text</id>
     <coordinates>
       <x>770</x>
-      <y>350</y>
+      <y>330</y>
       <w>100</w>
       <h>20</h>
     </coordinates>
@@ -178,29 +178,6 @@ fontsize=12</panel_attributes>
 style=wordwrap
 fontsize=12</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>810</x>
-      <y>390</y>
-      <w>160</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=()-
-bg=#ffff99</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>680</x>
-      <y>380</y>
-      <w>150</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>lt=)-</panel_attributes>
-    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -331,5 +308,54 @@ fontsize=12</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;120.0;10.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>480</x>
+      <y>390</y>
+      <w>210</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+WAsys
+Java Type Util
+bg=#eeffff
+layer=-190</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>670</x>
+      <y>360</y>
+      <w>300</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;280.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>660</x>
+      <y>360</y>
+      <w>30</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+bg=#99ffff</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>330</y>
+      <w>50</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-(</panel_attributes>
+    <additional_attributes>20.0;10.0;20.0;20.0</additional_attributes>
   </element>
 </diagram>

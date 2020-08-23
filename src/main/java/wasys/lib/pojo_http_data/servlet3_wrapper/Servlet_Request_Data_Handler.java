@@ -10,6 +10,10 @@ Created on: May 21, 2020 6:36:11 AM
     @author https://github.com/911992
  
 History:
+    0.2.9 (20200823)
+        • API sync with WAsys_simple_generic_object_pool v0.5.1 changes
+        • Changed wasys.lib.generic_object_pool.api.Object_Factory to wasys.lib.java_type_util.reflect.type_sig.Object_Factory
+
     0.2.5 (20200813)
         • Some documentation fixes
 
@@ -41,8 +45,9 @@ import wasys.lib.generic_object_pool.Full_Pool_Object_Creation_Policy;
 import wasys.lib.generic_object_pool.Generic_Object_Pool_Policy;
 import wasys.lib.generic_object_pool.Object_Pool;
 import wasys.lib.generic_object_pool.Pool_Context;
-import wasys.lib.generic_object_pool.api.Object_Factory;
+//import wasys.lib.generic_object_pool.api.Object_Factory;
 import wasys.lib.generic_object_pool.api.Poolable_Object;
+import wasys.lib.java_type_util.reflect.type_sig.Object_Factory;
 import wasys.lib.pojo_http_data.Generic_Object_Filler;
 import wasys.lib.pojo_http_data.api.Fillable_Object;
 import wasys.lib.pojo_http_data.api.container.Request_Data_Handler;
@@ -206,14 +211,14 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
      * Any created object comes with {@code null}-ptr associated to related {@link HttpServletRequest}
      * </p>
      */
-    private static final class _Factory implements Object_Factory {
+    private static final class _Factory implements Object_Factory<Servlet_Request_Data_Handler> {
 
         /**
          * Creates an instance of {@link Servlet_Request_Data_Handler}, with {@code null}-ptr association to {@link HttpServletRequest}.
          * @return a new non-{@code null} (but not-ready) {@link Servlet_Request_Data_Handler} instance
          */
         @Override
-        public Poolable_Object create_object() {
+        public Servlet_Request_Data_Handler create_object(Class arg_type) {
             return new Servlet_Request_Data_Handler();
         }
 
