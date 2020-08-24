@@ -4,6 +4,16 @@ repo: https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper
 Author: [911992](https://github.com/911992)  
 *(NOTE: following list carries mentionable(not all) changes. For detailed changes, check source code(s))*  
 
+**0.3.1** (Aug 24, 2020)
+
+0. `(－‸ლ)` <s>becasue of `WAsys_pojo_http_data` version `0.2.9`</s>
+1. Repo
+    * Updated `pom.xml` file
+        * Artifact to version `0.3.1`
+        * Updated the dependency of `WAsys_pojo_http_data` to `0.3.1`
+
+<hr/>
+
 **0.2.9** (Aug 23, 2020)
 
 0. Changes related to `WAsys_simple_generic_object_pool` API change version `0.5.1`
