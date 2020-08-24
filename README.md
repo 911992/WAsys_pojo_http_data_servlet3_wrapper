@@ -38,7 +38,7 @@ Add following dependency to your `pom.xml` maven conf file
 <dependency>
     <groupId>com.github.911992</groupId>
     <artifactId>WAsys_pojo_http_data_servlet3_wrapper</artifactId>
-    <version>0.2.9</version>
+    <version>0.3.1</version>
 </dependency>
 ```
 
