@@ -4,6 +4,23 @@ repo: https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper
 Author: [911992](https://github.com/911992)  
 *(NOTE: following list carries mentionable(not all) changes. For detailed changes, check source code(s))*  
 
+**0.3.3** (Aug 29, 2020)
+
+0. Changes related to `WAsys_simple_generic_object_pool` API change version `0.5.7`, and `WAsys_pojo_http_data` version `0.3.3`
+1. `Source_Code::Servlet_Request_Data_Handler`
+    * Removed import of `Pool_Context`(since it's no more)
+    * Creating the pooled internal array-list by `Generic_Object_Pool` 
+4. Diagrams
+    * Updated class diagram (check changes [here](./_docs/diagram/class_diagram_release_note.md))
+5. Repo
+    * Updated `pom.xml` file
+        * Added copyright literal for generated javadoc(plugin)
+        * Artifact to version `0.3.3`
+        * Updated the dependency of `WAsys_pojo_http_data` to `0.3.3`
+        * Updated the dependency of `WAsys_simple_generic_object_pool` to `0.5.7`
+
+<hr/>
+
 **0.3.1** (Aug 24, 2020)
 
 0. `(－‸ლ)` <s>becasue of `WAsys_pojo_http_data` version `0.2.9`</s>

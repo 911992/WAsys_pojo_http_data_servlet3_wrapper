@@ -10,6 +10,10 @@ Created on: May 21, 2020 6:36:11 AM
     @author https://github.com/911992
  
 History:
+    0.3.3 (20200829)
+        • Removed import of Pool_Context(since it's no more)
+        • Creating the pooled internal array-list by Generic_Object_Pool
+
     0.2.9 (20200823)
         • API sync with WAsys_simple_generic_object_pool v0.5.1 changes
         • Changed wasys.lib.generic_object_pool.api.Object_Factory to wasys.lib.java_type_util.reflect.type_sig.Object_Factory
@@ -42,10 +46,9 @@ import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import wasys.lib.generic_object_pool.Full_Pool_Object_Creation_Policy;
+import wasys.lib.generic_object_pool.Generic_Object_Pool;
 import wasys.lib.generic_object_pool.Generic_Object_Pool_Policy;
 import wasys.lib.generic_object_pool.Object_Pool;
-import wasys.lib.generic_object_pool.Pool_Context;
-//import wasys.lib.generic_object_pool.api.Object_Factory;
 import wasys.lib.generic_object_pool.api.Poolable_Object;
 import wasys.lib.java_type_util.reflect.type_sig.Object_Factory;
 import wasys.lib.pojo_http_data.Generic_Object_Filler;
@@ -341,7 +344,7 @@ public class Servlet_Request_Data_Handler extends Poolable_Request_Data_Handler_
             e.printStackTrace();
         }
         _Factory _fact = new _Factory();
-        def_pool = Pool_Context.get_insatcne().get_pool_unregistered_synced(_fact, _pol);
+        def_pool = Generic_Object_Pool.new_pool_instance(_fact, _pol);
     }
 
     /**
