@@ -12,6 +12,12 @@ Created on: Jun 6, 2020 12:05:11 PM
     @author https://github.com/911992
  
 History:
+    0.3.9 (20200909)
+        • Updated the dependency of WAsys_pojo_http_data to 0.3.9
+        • Updated the dependency of WAsys_simple_generic_object_pool to 0.5.9
+        • Updated the dependency of WAsys_Java_type_util to 0.1.9
+        • Updated the artifact to 0.3.9
+
     0.3.5 (20200901)
         • Updated the dependency of WAsys_pojo_http_data to 0.3.5
         • Updated the artifact to 0.3.5
@@ -48,7 +54,7 @@ History:
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.911992</groupId>
     <artifactId>WAsys_pojo_http_data_servlet3_wrapper</artifactId>
-    <version>0.3.5</version>
+    <version>0.3.9</version>
     <packaging>jar</packaging>
     <description>Servlet 3.0 wrapper for WAsys_pojo_http_data lib</description>
     <url>https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper</url>
@@ -81,19 +87,19 @@ History:
         <dependency>
             <groupId>com.github.911992</groupId>
             <artifactId>WAsys_Java_type_util</artifactId>
-            <version>0.1.7</version>
+            <version>0.1.9</version>
         </dependency>
 
         <dependency>
             <groupId>com.github.911992</groupId>
             <artifactId>WAsys_simple_generic_object_pool</artifactId>
-            <version>0.5.7</version>
+            <version>0.5.9</version>
         </dependency>
         
         <dependency>
             <groupId>com.github.911992</groupId>
             <artifactId>WAsys_pojo_http_data</artifactId>
-            <version>0.3.5</version>
+            <version>0.3.9</version>
         </dependency>
         
     </dependencies>
