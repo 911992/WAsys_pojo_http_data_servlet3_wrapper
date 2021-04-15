@@ -5,7 +5,7 @@ Servlet 3.0 wrapper for [WAsys_pojo_http_data](https://github.com/911992/WAsys_p
 *Diagram 0: Repo Social Media Img*  
 
 ## Revision History
-Latest: v0.3.9 (Sept 9, 2020)  
+Latest: v0.4.0 (Apr 14, 2021)  
 Please refer to [release_note.md](./release_note.md) file  
 
 ## Requirements
@@ -38,7 +38,7 @@ Add following dependency to your `pom.xml` maven conf file
 <dependency>
     <groupId>com.github.911992</groupId>
     <artifactId>WAsys_pojo_http_data_servlet3_wrapper</artifactId>
-    <version>0.3.9</version>
+    <version>0.4.0</version>
 </dependency>
 ```
 
