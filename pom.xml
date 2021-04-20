@@ -62,7 +62,7 @@ History:
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.911992</groupId>
     <artifactId>WAsys_pojo_http_data_servlet3_wrapper</artifactId>
-    <version>0.4.0</version>
+    <version>0.4.1</version>
     <packaging>jar</packaging>
     <description>Servlet 3.0 wrapper for WAsys_pojo_http_data lib</description>
     <url>https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper</url>
