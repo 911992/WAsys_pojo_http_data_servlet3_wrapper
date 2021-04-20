@@ -4,6 +4,15 @@ repo: https://github.com/911992/WAsys_pojo_http_data_servlet3_wrapper
 Author: [911992](https://github.com/911992)  
 *(NOTE: following list carries mentionable(not all) changes. For detailed changes, check source code(s))*  
 
+**0.4.1** (Apr 19, 2021)
+
+0. Repo
+    * Updated `pom.xml` file
+        * Artifact to version `0.4.1`
+        * Updated the dependency of `WAsys_pojo_http_data` to `0.4.1`
+
+<hr/>
+
 **0.4.0** (Apr 14, 2021)
 
 0. Repo
